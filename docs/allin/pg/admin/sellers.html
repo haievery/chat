@@ -1,0 +1,60 @@
+﻿
+
+<ul class="com-toolbar clearfloat" com-auto="list">
+    <li>
+        商家账号
+        <input name="key" value="" placeholder="请输入账号" />
+        <button class="mui-btn  mui-btn-link mui-icon mui-icon-search" com-auto com-post>查询</button>
+    </li>
+    <li>
+
+        <a href="/Admin/CreateSeller" class="mui-btn  mui-btn-link mui-icon mui-icon-plus" target="_blank">接入商家</a>
+    </li>
+</ul>
+
+<div class="mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <div id="list" class="com-auto" com-refresh="" com-autoload="false" com-load="/allin/admin/OnepayProcessCmd?sellers">
+            <table class="com-table">
+                <thead>
+                    <tr>
+                        <td>昵称</td>
+                        <td>手机号</td>
+                        <td>ID</td>
+                        <td>签名</td>
+                        <td style="text-align:right">余额</td>
+                        <td style="text-align:right">绑定代理手机号</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tr com-foreach="item in data">
+                    <td>{{item.NickName}}</td>
+                    <td style="text-align:left;"><a href="tel:{{item.Phone}}" class="mui-icon mui-icon-phone mui-btn-link">{{item.Phone}}</a></td>
+                    <td class="copy">{{item.Id}}</td>
+                    <td class="copy">{{item.Sign}}</td>
+                    <td style="text-align:right">{{item.Cash:money}}</td>
+                    <td style="text-align:right">{{item.BindAgent}}</td>
+
+                    <td>
+                        <a class="mui-btn-link" com-page="/pg/user/log.html?id={{item.Id}}">日志</a>
+                        <a class="mui-btn-link" com-page="/pg/user/Income.html?id={{item.Id}}">收益</a>
+                        <a class="mui-btn-link" href="/admin/selleredit/{{item.Id}}">修改</a>
+                        <a class="mui-btn-link" com-post="/allin/admin/OnepayProcessCmd?bindagent/{{item.Id}}" com-prompt-msg="请输入一级代理手机号|phone">绑定一级代理</a>
+                        <a class="mui-btn-link" com-post="/allin/user/DelUser/{{item.Id}}" com-confim-msg="是否删除{{item.NickName}}?">删除</a>
+
+                        <a class="mui-btn-link" com-post="/allin/user/ResetPwd/{{item.Id}}"
+                           title="重置登录和交易密码" com-prompt-msg="请输入新密码:|Password">
+                            改密
+                        </a>
+
+                        <a class="mui-btn-link" com-post="/allin/user/Transfer/{{item.Phone}}"
+                           com-prompt-msg="转给{{item.Phone}}的金额:|money|0||||交易密码:|tranPassword||password">
+                            充值
+                        </a>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

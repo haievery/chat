@@ -1,0 +1,34 @@
+﻿/*隐藏整个ui层，用脚本控制状态*/
+#swagger-ui
+{
+    display:none;
+}
+
+.swagger-ui .scheme-container {
+    margin: 0 0 20px;
+    background-color: transparent;
+    box-shadow: none;
+    position: absolute;
+    top: -16px;
+    /*隐藏*/
+    top: -1000px;
+    right: 16px;
+}
+
+.swagger-ui .info{
+    margin:10px 0;
+}
+
+/*参数类型*/
+.swagger-ui .parameter__type{
+    color:blue;
+}
+
+.swagger-ui table tr {
+    border-bottom: 1px solid #7cb36033;
+}
+/*操作注释*/
+.opblock-summary-description {
+    text-align: right;
+    float: right;
+}

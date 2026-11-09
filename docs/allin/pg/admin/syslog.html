@@ -1,0 +1,37 @@
+﻿<ul class="com-toolbar" com-auto="list">
+    <li>
+        <select name="logType">
+            <option value=""  selected="selected">所有日志</option>
+            <option value="Debug">调试信息</option>
+            <option value="Error">错误信息</option>
+        </select>
+    </li>
+    <li>
+        信息 <input name="key" />
+    </li>
+    <li>
+        <input name="end" class="copy com-datetime" value="" placeholder="至今(年-月-日)" />
+    </li>
+    <li>
+        <button class="mui-btn  mui-btn-link mui-icon mui-icon-search" com-auto com-post>查询</button>
+    </li>
+</ul><div class="mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <table class="com-table com-auto"  id="list" com-autoload="false" com-load="/allin/admin/syslog">
+            <thead>
+                <tr>
+                    <td style="width:180px;">时间</td>
+                    <td>来源</td>
+                    <td>信息</td>
+                </tr>
+            </thead>
+            <tr com-foreach="item in data">
+                <td>{{item.Dated:datetime}}</td>
+                <td>{{item.Logger}}</td>
+                <td style="text-align:left;">{{item.Message}}</td>
+                           
+            </tr>
+        </table>
+    </div>
+</div>
+

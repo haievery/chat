@@ -1,0 +1,46 @@
+﻿
+<div class="mui-content com-content">
+    <div class="mui-content-padded com-auto" com-post="/allin/user/ProcessCmd/tixian" com-load="/allin/user/TixianInfo">
+        <!--<table class="com-table">
+            <thead>
+                <tr>
+                    <td>项目</td>
+                    <td>充值</td>
+                    <td>提现</td>
+                    <td>余额</td>
+                    <td>净收入</td>
+                    <td>收入</td>
+                    <td>支出</td>
+                    <td>支付收入</td>
+                    <td>支付佣金</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>总计</td>
+                   <td></td>
+
+                </tr>
+            </tbody>
+  
+        </table>-->
+        <div>{{data.NickName}}，您当前可提现金额：<span com-bind="data.Cash"></span>元</div>
+
+        <h5>提现金额</h5>
+        <div class="mui-input-row">
+            <input type="text" name="money" value="" placeholder="提现金额" />
+        </div>
+        <h5>交易密码</h5>
+        <div class="mui-input-row">
+            <input name="pwd" value="" type="password" placeholder="交易密码(默认为登录密码)" />
+        </div>
+        <h5>收款方信息</h5>
+        <div class="mui-input-row">
+            <textarea name="BankInfo" com-bind="data.BankInfo" placeholder="请输入提现银行账号（支付宝账号或微信账号，默认读取以保存的相关账号）"></textarea>
+        </div>
+        <div>
+            <button class="mui-btn mui-btn-block mui-btn-blue" com-post>提 现</button>
+        </div>
+    </div>
+
+</div>

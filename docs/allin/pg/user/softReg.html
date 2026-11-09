@@ -1,0 +1,127 @@
+﻿<ul class="com-toolbar" com-auto="softReg">
+    <li>
+        <input name="key" /><button com-auto com-post class="mui-btn  mui-btn-link mui-icon mui-icon-search">查询</button><button com-page="#add_softReg" class="mui-btn  mui-btn-link mui-icon mui-icon-plus">新键授权信息</button>        <button com-page="#show_softRegdemo" class="mui-btn  mui-btn-link mui-icon mui-icon-plus">调用实例</button>
+    </li>
+</ul><div class="com-content  mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <table class="com-table com-auto" id="softReg" com-autoload="false" com-load="/allin/userAPI/ProcessCmd/soft_regs?{?id}">
+            <thead>
+                <tr>
+                    <td>服务编号</td>
+                    <td>部署名称</td>
+                    <td>服务截止时间</td>
+                    <td>注册码</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr com-foreach="var item in data">
+                    <td class="copy">
+                        {{item.Id}}
+                    </td>
+                    <td>{{item.AppName}}
+                    </td>
+                    <td>
+                        {{item.ExpDate:date}}
+                    </td>
+                    <td><span class="copy">{{item.RegCode}}</span></td>
+                    <td>
+                        <a com-page="#edit_soft?{{item.Id}}" title="修改{{item.SoftName}}">授权</a>
+                        <a com-page="/allin/File/Index/{{item.ResId}}">文件清单</a>
+                        <a com-prompt-msg='配置数据|cfg|{{item.ConfigData:escape}}|textarea' com-post="/allin/user/ProcessCmd/set_softReg_ConfigData?{{item.Id}}">配置数据</a>
+                        <!--<button class="mui-btn mui-btn-link" com-page="#edit_site?{{item.Id}}" title="修改{{item.HostName}}">修改</button><button class="mui-btn mui-btn-link" com-post="/allin/user/ProcessCmd/del_site?{{item.Id}}" com-confim-msg="是否删除{{item.HostName}}?">删除</button>-->
+                    </td>
+                </tr>
+              
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+     <div style="display:none" id="add_softReg">
+         <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/soft_addreg?{?id}">
+             <input com-bind="data.Id" type="hidden" />
+             <div class="com-input-title">部署名称<span>*</span></div>
+             <input type="text" name="AppName" class="mui-input-clear" placeholder="部署名称">
+             <div class="com-input-title">用户识别码<span>*</span><div class="mui-icon mui-icon-info com-input-prompt" title="网站名称由字母、汉字组成，长度小于30"></div></div>
+             <input name="UserId" i value="" placeholder="用户识别号" type="text"  />
+             <div class="com-input-title">
+                 服务截止日期
+             </div>
+             <input name="ExpDate" value="2100-01-01" placeholder="服务截止日期" type="text" maxlength="30" />
+            
+             <div class="com-input-title">
+                 配置数据(程序配置和数据库配置)
+             </div>
+             <input name="ConfigData" value="" placeholder="配置数据" type="text" />
+             <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>创 建</button>
+
+         </div>
+
+     </div>
+
+
+     <div style="display:none" id="show_softRegdemo">
+         <pre style="padding:10px;font-size:14px;line-height:16px;" class="copy">
+
+          /*------------------授权用户检测演示----------------------*/
+         
+         System.Net.WebClient wc = new System.Net.WebClient();
+         dynamic wd = new { pid = "服务编号", regCode = "注册码" };
+         string apiUrl="http://127.0.0.1:88"; 
+         wc.Headers.Add("Content-type", "application/json; charset=utf-8");
+         wc.Headers.Add("Accept", "application/json");
+         string d5 = wc.UploadString(apiUrl+"/allin/Open/AppCheck", "POST", Newtonsoft.Json.JsonConvert.SerializeObject(wd));
+         wc.Dispose();
+         dynamic back = Newtonsoft.Json.JsonConvert.DeserializeObject&lt;dynamic&gt;(d5);
+         if (back.state == "ok")
+         {
+             //服务器授权配置数据
+             string code= back.data.data;
+         }
+         else //
+         {
+             //错误信息
+             string msg=back.msg;
+         }
+     
+             
+             </pre>
+     </div>
+<div style="display:none" id="edit_softReg" com-load="/allin/userAPI/ProcessCmd/load_soft">
+    <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/edit_site">
+        <input com-bind="data.Id" type="hidden" />
+        <div class="com-input-title">软件名称<span>*</span></div>
+        <input type="text" com-bind="data.SoftName" class="mui-input-clear" placeholder="软件名称">
+        <div class="com-input-title">主程序文件名<span>*</span><div class="mui-icon mui-icon-info com-input-prompt" title="网站名称由字母、汉字组成，长度小于30"></div></div>
+        <input com-bind="data.MainFile" i value="" placeholder="主程序文件名" type="text" maxlength="30" />
+
+        <div class="com-input-title">
+            作者
+        </div>
+        <input com-bind="data.Author" value="" placeholder="作者" type="text" maxlength="30" />
+        <div class="com-input-title">
+            相关进程
+        </div>
+        <input com-bind="data.LinkProcess" value="" placeholder="相关进程" type="text" maxlength="30" />
+        <div class="com-input-title">
+            安装方式
+        </div>
+        <input com-bind="data.SetupMode" value="" placeholder="安装方式" type="text" maxlength="30" />
+        <div class="com-input-title">
+            激活方式
+        </div>
+        <input com-bind="data.ActiveMode" value="" placeholder="安装方式" type="text" maxlength="30" />
+        <div class="com-input-title">
+            激活返回代码
+        </div>
+        <input com-bind="data.ActiveData" value="" placeholder="激活返回代码" type="text" />
+        <div class="mui-button-row mui-content-padded">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>修 改</button>
+        </div>
+
+    </div>
+</div>
+
+

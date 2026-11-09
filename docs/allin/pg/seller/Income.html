@@ -1,0 +1,248 @@
+﻿
+
+<div class="mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <div class="com-auto" com-load="/allin/seller/Income" com-loaded="loadIncome">
+            <div class="mui-table-view mui-grid-view mui-grid-9">
+                <div id="dayIncome" style="height:400px;" class="mui-table-view-cell mui-media mui-col-xs-12  mui-col-sm-6"></div>
+                <div id="monthIncome" style="height:400px;" class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6"></div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+    <div id="forward" class="mui-popover mui-popover-action mui-popover-bottom">
+    </div>
+
+    <script src="/Content/echarts/echarts.common.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        function loadIncome(e, data) {
+
+            // 基于准备好的dom，初始化echarts实例
+            var mChart = echarts.init(document.getElementById('monthIncome'));
+            var month = data.data.month;
+            var xDays = [];
+            var incomes = [];
+            var addMoney = [];
+            var decMoney = [];
+            var payAddMoney = [];
+            var payYongJin = [];
+            var recharge = [];
+            for (var i = 0; i < month.length; i++) {
+                var a = month[i];
+
+                xDays.push(a.CurDate + "月");
+                incomes.push(a.Income);
+                addMoney.push(a.AddMoney);
+                decMoney.push(a.DecMoney);
+                payAddMoney.push(a.PayAddMoney);
+                payYongJin.push(a.PayYongJin);
+                recharge.push(a.Recharge);
+            }
+            var option = {
+                title: {
+                    text: '近6个月收益图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['净收益', '净充值', '收入', '支出', '支付收款', '支付佣金']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: xDays
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '净收益',
+                        type: 'line',
+                        stack: '总量',
+                        data: incomes
+                    },
+                    {
+                        name: '净充值',
+                        type: 'line',
+                        stack: '总量',
+                        data: recharge
+                    },
+                    {
+                        name: '收入',
+                        type: 'line',
+                        stack: '总量',
+                        data: addMoney
+                    },
+                    {
+                        name: '支出',
+                        type: 'line',
+                        stack: '总量',
+                        data: decMoney
+                    },
+                    {
+                        name: '支付收款',
+                        type: 'line',
+                        stack: '总量',
+                        data: payAddMoney
+                    },
+                    {
+                        name: '支付佣金',
+                        type: 'line',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        data: payYongJin
+                    }
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            mChart.setOption(option);
+
+            var dayChart = echarts.init(document.getElementById('dayIncome'));
+            var day = data.data.day;
+            var xDays2 = [];
+            var incomes2 = [];
+            var addMoney2 = [];
+            var decMoney2 = [];
+            var payAddMoney2 = [];
+            var payYongJin2 = [];
+            var recharge2 = [];
+            for (var i = 0; i < day.length; i++) {
+                var a = day[i];
+                var dt = new Date(a.CurDate.replace("T", " "));
+                xDays2.push(dt.toLocaleDateString());
+                incomes2.push(a.Income);
+                addMoney2.push(a.AddMoney);
+                decMoney2.push(a.DecMoney);
+                payAddMoney2.push(a.PayAddMoney);
+                payYongJin2.push(a.PayYongJin);
+                recharge2.push(a.Recharge);
+            }
+            var option2 = {
+                title: {
+                    text: '近7天收益图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['净收益', '净充值', '收入', '支出', '支付收款', '支付佣金']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: xDays2
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '净收益',
+                        type: 'line',
+                        stack: '总量',
+                        data: incomes2
+                    },
+                    {
+                        name: '收入',
+                        type: 'line',
+                        stack: '总量',
+                        data: addMoney2
+                    },
+                    {
+                        name: '净充值',
+                        type: 'line',
+                        stack: '总量',
+                        data: recharge2
+                    },
+                    {
+                        name: '支出',
+                        type: 'line',
+                        stack: '总量',
+                        data: decMoney2
+                    },
+                    {
+                        name: '支付收款',
+                        type: 'line',
+                        stack: '总量',
+                        data: payAddMoney2
+                    },
+                    {
+                        name: '支付佣金',
+                        type: 'line',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        data: payYongJin2
+                    }
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            dayChart.setOption(option2);
+        }
+    </script>

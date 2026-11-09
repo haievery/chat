@@ -1,0 +1,58 @@
+﻿
+<div class="mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <div class="com-content com-auto" com-load="/allin/user/ProcessCmd/chongti">
+            <table class="com-table">
+                <thead>
+                    <tr>
+                        <td>时间</td>
+                        <td>事件</td>
+                        <td>说明</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tr com-foreach="item in data">
+                    <td>
+                        {{item.CreateTime:datetime}}
+                    </td>
+                    <td>{{item.Type:task_type}}</td>
+                    <td class="copy">
+                        {{item.Remark}}
+                    </td>
+                    <td com-if="{{item.State}}==0"><a com-post="/allin/user/ProcessCmd/ProccessChongTi?{{item.ID}}" com-prompt-msg="请输入交易密码|pwd||password">受理</a></td>
+                    <td com-if="{{item.State}}!=0">{{item.State:task_result}}</td>
+                </tr>
+                <tr com-if="{{data.length}}<1">
+                    <td colspan="3">没有任何申请记录</td>
+                </tr>
+            </table>
+        </div>
+        </div>
+</div>
+        <script>
+            function task_type(data) {
+                switch (data) {
+                    case 2000000:
+                        return "提现";
+                    case 2000001:
+                        return "充值";
+                    case 2000002:
+                        return "代充";
+                    default:
+                        return data;
+                }
+            }
+
+            function task_result(data) {
+                switch (data) {
+                    case 0:
+                        return "处理中";
+                    case 99:
+                        return "受理失败";
+                    case 100:
+                        return "受理成功"
+                    default:
+                        return data;
+                }
+            }
+        </script>

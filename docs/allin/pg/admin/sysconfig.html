@@ -1,0 +1,48 @@
+﻿<div class="mui-input-group com-auto" com-load="/allin/admin/ProcessCmd/loadconfig" com-post>
+    <div class="mui-input-row">
+        <label>网站名称</label>
+        <input com-bind="data.SiteName" />
+        <div class="mui-icon mui-icon-info com-input-prompt" title="建议长度大于2"></div>
+    </div>
+    <div class="mui-input-row">
+        <label>网站文件夹</label>
+        <label com-bind="data.Root" />
+    </div>
+    <div class="mui-input-row">
+        <label>系统用户ID</label>
+        <label com-bind="data.SysUserId" />
+    </div>
+    <div class="mui-input-row">
+        <label>发放金额</label>
+        <div>
+            <input com-bind="data.ReleaseCash" readonly="readonly" />
+            <a com-post="/allin/admin/ProcessCmd/AddreleaseCash" com-prompt-msg="请输入增发金额|money||||请输入交易密码|pwd">增发</a>
+        </div>
+      
+    </div>
+    <div class="mui-input-row">
+        <label>虚拟币名称</label>
+        <input com-bind="data.SysMoneyName" placeholder="元" />
+        <div class="mui-icon mui-icon-info com-input-prompt" title="网站中充值单位"></div>
+    </div>
+    <div class="mui-input-row">
+        <label>允许反向充值</label>
+        <div class="mui-switch" com-bind="data.RechargeBack">
+            <div class="mui-switch-handle"></div>
+        </div>
+    </div>
+
+    <div class="mui-input-row">
+        <label>调试模式</label>
+        <div class="mui-switch" com-bind="data.IsDebugMode">
+            <div class="mui-switch-handle"></div>
+        </div>
+    </div>
+    <div class="mui-input-row">
+        <label>记录调试信息</label>
+        <div class="mui-switch" com-bind="data.LogDebug">
+            <div class="mui-switch-handle"></div>
+        </div>
+    </div>
+    <button class="mui-btn  mui-btn-block mui-btn-primary" com-post="/allin/admin/SaveSysConfig">保 存</button>
+</div>

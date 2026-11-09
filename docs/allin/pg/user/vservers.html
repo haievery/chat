@@ -1,0 +1,89 @@
+﻿<ul class="com-toolbar" com-auto="game">
+    <li>
+        <input name="key" />
+        <button com-auto com-post t class="mui-btn  mui-btn-link mui-icon mui-icon-search">查询</button>
+        <button com-page="#add_server" class="mui-btn  mui-btn-link mui-icon mui-icon-plus">创建虚拟服务器</button>
+    </li>
+</ul><div class="com-content  mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <table class="com-table com-auto" id="game" com-autoload="false" com-load="/allin/userAPI/ProcessCmd/vservers">
+            <thead>
+                <tr>
+                    <td>服务器名称</td>
+                    <td>创建时间</td>
+                    <td>最大站点</td>
+                    <td>通讯密钥</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr com-foreach="var item in data">
+                    <td>
+                        {{item.HostName}}
+                    </td>
+                    <td>
+                        {{item.CreateTime:date}}
+                    </td>
+                    <td>
+                        {{item.MaxSites}}
+
+                    </td>
+                    <td>{{item.Key}}</td>
+                    <td><button class="mui-btn mui-btn-link" com-page="#edit_server?{{item.Id}}" title="修改{{item.HostName}}">修改</button><button class="mui-btn mui-btn-link" com-post="/allin/user/ProcessCmd/del_vserver?{{item.Id}}" com-confim-msg="是否删除{{item.HostName}}?">删除</button></td>
+                </tr>
+                <tr com-if="{{data.length}}<1">
+                    <td colspan="4">没有发现服务器</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div style="display:none" id="add_server">
+    <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/addvserver">
+        <input com-bind="data.Id" type="hidden" />
+        <h5>服务器名</h5>
+        <div class="mui-input-row">
+            <input type="text" name="HostName" class="mui-input-clear" placeholder="站点名">
+        </div>
+        <h5>通讯密钥</h5>
+        <div class="mui-input-row">
+            <input type="text" name="Key" class="mui-input-clear" placeholder="签名">
+        </div>
+        <h5>联系人邮箱</h5>
+        <div class="mui-input-row">
+            <input type="text" name="Email" class="mui-input-clear" placeholder="联系人邮箱">
+        </div>
+
+        <div class="mui-button-row mui-content-padded">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>创 建</button>
+        </div>
+
+    </div>
+</div>
+
+<div style="display:none" id="edit_server" com-load="/allin/userAPI/ProcessCmd/load_vserver">
+    <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/edit_vserver">
+        <input com-bind="data.Id" type="hidden" />
+        <h5>服务器名</h5>
+        <div class="mui-input-row">
+            <input type="text" com-bind="data.HostName" class="mui-input-clear" placeholder="站点名">
+        </div>
+        <h5>通讯密钥</h5>
+        <div class="mui-input-row">
+            <input type="text" com-bind="data.Key" class="mui-input-clear" placeholder="签名">
+        </div>
+        <h5>联系人邮箱</h5>
+        <div class="mui-input-row">
+            <input type="text" com-bind="data.Email" class="mui-input-clear" placeholder="联系人邮箱">
+        </div>
+
+        <div class="mui-button-row mui-content-padded">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>修 改</button>
+        </div>
+
+    </div>
+</div>
+
+

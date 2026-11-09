@@ -1,0 +1,17 @@
+﻿{
+  "name": "全家桶",
+  "short_name": "全家桶",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#125",
+  "theme_color": "#03173d",
+  "orientation": "portrait-primary",
+  "description": "",
+  "icons": [
+    {
+      "src": "/data/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

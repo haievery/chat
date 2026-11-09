@@ -1,0 +1,93 @@
+﻿<ul class="com-toolbar" com-auto="game">
+    <li>
+        <input name="key" /><button com-auto com-post class="mui-btn  mui-btn-link mui-icon mui-icon-search">查询</button><button com-page="#add_server" class="mui-btn  mui-btn-link mui-icon mui-icon-plus">创建网站</button>
+    </li>
+</ul><div class="com-content  mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <table class="com-table com-auto" id="game" com-autoload="false" com-load="/allin/userAPI/ProcessCmd/sites">
+            <thead>
+                <tr>
+                    <td class="hide800">Logo</td>
+                    <td>网站ID/网站名</td>
+                    <td class="hide800">创建时间/到期时间</td>
+                    <td>备案信息/创建人-手机</td>
+                 <td>已绑域名</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr com-foreach="var item in data">
+                    <td class="hide800"></td>
+                    <td>
+                        <p>{{item.Id}}</p>
+                        <p>{{item.ServerName}}-{{item.SiteName}}</p>
+                    </td>
+                    <td class="hide800">
+                        <p>{{item.CreateTime:date}}</p>
+                        <p>{{item.ExpiryTime:date}}</p>
+                    </td>
+                    <td><p>{{item.BeianHao}}</p>
+                      <p>{{item.OwnerName}}-{{item.Phone}}</p>
+                    </td>
+                    <td>{{item.Domains}}</td>
+                    <td><button class="mui-btn mui-btn-link" com-page="#edit_site?{{item.Id}}" title="修改{{item.HostName}}">修改</button><button class="mui-btn mui-btn-link" com-post="/allin/user/ProcessCmd/del_site?{{item.Id}}" com-confim-msg="是否删除{{item.HostName}}?">删除</button></td>
+                </tr>
+              
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+     <div style="display:none" id="add_server">
+         <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/add_site">
+             <input com-bind="data.Id" type="hidden" />
+             <div class="com-input-title">挂靠服务器<span>*</span></div>
+             <input type="text" name="hostName" class="mui-input-clear" placeholder="站点名">
+             <div class="com-input-title">网站名称<span>*</span><div class="mui-icon mui-icon-info com-input-prompt" title="网站名称由字母、汉字组成，长度小于30"></div></div>
+             <input name="siteName" i value="" placeholder="网站名称" type="text" maxlength="30" />
+
+             <div class="com-input-title">
+                 免费二级域名<div class="mui-icon mui-icon-info com-input-prompt" title="输入一个您容易记住的子域名，不填会随机生成一个"></div>
+             </div>
+             <input name="subDomain" value="" type="text" />
+
+
+             <div class="com-input-title">
+                 顶级域名<div class="mui-icon mui-icon-info com-input-prompt" title="挂载当前主机的服务中心网址：只需要填写“http://域名:端口”，如果端口为80，可以不填写,如sc.com.kim:80，可以填写sc.com.kim"></div>
+             </div>
+
+             <input name="domain" value="" placeholder="网站域名(如:www.domain.com)" type="text" />
+           
+                 <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>创 建</button>
+           
+         </div>
+
+     </div>
+
+
+
+<div style="display:none" id="edit_server" com-load="/allin/userAPI/ProcessCmd/load_site">
+    <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/edit_site">
+        <input com-bind="data.Id" type="hidden" />
+        <h5>服务器名</h5>
+        <div class="mui-input-row">
+            <input type="text" com-bind="data.HostName" class="mui-input-clear" placeholder="站点名">
+        </div>
+        <h5>通讯密钥</h5>
+        <div class="mui-input-row">
+            <input type="text" com-bind="data.Key" class="mui-input-clear" placeholder="签名">
+        </div>
+        <h5>联系人邮箱</h5>
+        <div class="mui-input-row">
+            <input type="text" com-bind="data.Email" class="mui-input-clear" placeholder="联系人邮箱">
+        </div>
+
+        <div class="mui-button-row mui-content-padded">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>修 改</button>
+        </div>
+
+    </div>
+</div>
+
+

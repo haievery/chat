@@ -1,0 +1,117 @@
+﻿<ul class="com-toolbar" com-auto="game">
+    <li>
+        <input name="key" /><button com-auto com-post class="mui-btn  mui-btn-link mui-icon mui-icon-search">查询</button><button com-page="#add_soft" class="mui-btn  mui-btn-link mui-icon mui-icon-plus">创建软件</button>
+    </li>
+</ul><div class="com-content  mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <table class="com-table com-auto" id="game" com-autoload="false" com-load="/allin/userAPI/ProcessCmd/softs">
+            <thead>
+                <tr>
+                    <td>软件名称</td>
+                    <td>版本号</td>
+                    <td>创建时间</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr com-foreach="var item in data">
+                    <td>
+                        {{item.SoftName}}
+                    </td>
+                    <td class="hide800">
+                        {{item.Ver}}
+                    </td>
+                    <td>{{item.CreateTime:date}}
+                    </td>
+                    <td>
+                        <a com-page="#edit_soft?{{item.Id}}" title="修改{{item.SoftName}}">修改</a>
+                        <a com-page="/allin/File/Index/{{item.ResId}}">文件清单</a>
+                        <a com-page="/UserApp/DocList/{{item.Id}}">文档中心</a>
+                        <a com-page="/pg/user/softReg.html?id={{item.Id}}" title="软件[{{item.SoftName}}]授权用户">授权用户</a>
+                        <a href="/UserApp/Build/{{item.Id}}">编译安装包</a>
+                        <a href="/UserApp/Delete/{{item.Id}}">删除</a>
+                        <a href="/UserApp/Download/{{item.Id}}" target="_blank">下载安装包</a>
+
+                        <!--<button class="mui-btn mui-btn-link" com-page="#edit_site?{{item.Id}}" title="修改{{item.HostName}}">修改</button><button class="mui-btn mui-btn-link" com-post="/allin/user/ProcessCmd/del_site?{{item.Id}}" com-confim-msg="是否删除{{item.HostName}}?">删除</button>-->
+                    </td>
+                </tr>
+              
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+     <div style="display:none" id="add_soft">
+         <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/add_soft">
+             <input com-bind="data.Id" type="hidden" />
+             <div class="com-input-title">软件名称<span>*</span></div>
+             <input type="text" name="SoftName" class="mui-input-clear" placeholder="软件名称">
+             <div class="com-input-title">主程序文件名<span>*</span><div class="mui-icon mui-icon-info com-input-prompt" title="网站名称由字母、汉字组成，长度小于30"></div></div>
+             <input name="MainFile" i value="" placeholder="主程序文件名" type="text" maxlength="30" />
+
+             <div class="com-input-title">
+                 作者
+             </div>
+             <input name="Author" value="" placeholder="作者" type="text" maxlength="30" />
+             <div class="com-input-title">
+                 相关进程
+             </div>
+             <input name="LinkProcess" value="" placeholder="相关进程" type="text" maxlength="30" />
+             <div class="com-input-title">
+                 安装方式
+             </div>
+             <input name="SetupMode" value="" placeholder="安装方式" type="text" maxlength="30" />
+             <div class="com-input-title">
+                 激活方式
+             </div>
+             <input name="ActiveMode" value="" placeholder="安装方式" type="text" maxlength="30" />
+             <div class="com-input-title">
+                 激活返回代码
+             </div>
+             <input name="ActiveData" value="" placeholder="激活返回代码" type="text"  />
+
+             <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>创 建</button>
+
+         </div>
+
+     </div>
+
+
+
+<div style="display:none" id="edit_soft" com-load="/allin/userAPI/ProcessCmd/load_soft">
+    <div class="mui-content-padded" com-post="/allin/userAPI/ProcessCmd/edit_site">
+        <input com-bind="data.Id" type="hidden" />
+        <div class="com-input-title">软件名称<span>*</span></div>
+        <input type="text" com-bind="data.SoftName" class="mui-input-clear" placeholder="软件名称">
+        <div class="com-input-title">主程序文件名<span>*</span><div class="mui-icon mui-icon-info com-input-prompt" title="网站名称由字母、汉字组成，长度小于30"></div></div>
+        <input com-bind="data.MainFile" i value="" placeholder="主程序文件名" type="text" maxlength="30" />
+
+        <div class="com-input-title">
+            作者
+        </div>
+        <input com-bind="data.Author" value="" placeholder="作者" type="text" maxlength="30" />
+        <div class="com-input-title">
+            相关进程
+        </div>
+        <input com-bind="data.LinkProcess" value="" placeholder="相关进程" type="text" maxlength="30" />
+        <div class="com-input-title">
+            安装方式
+        </div>
+        <input com-bind="data.SetupMode" value="" placeholder="安装方式" type="text" maxlength="30" />
+        <div class="com-input-title">
+            激活方式
+        </div>
+        <input com-bind="data.ActiveMode" value="" placeholder="安装方式" type="text" maxlength="30" />
+        <div class="com-input-title">
+            激活返回代码
+        </div>
+        <input com-bind="data.ActiveData" value="" placeholder="激活返回代码" type="text" />
+        <div class="mui-button-row mui-content-padded">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-block" com-post>修 改</button>
+        </div>
+
+    </div>
+</div>
+
+

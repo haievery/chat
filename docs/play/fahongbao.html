@@ -1,0 +1,72 @@
+﻿
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+        <link rel="stylesheet" href="/Content/mui/css/mui.min.css" />
+        <link rel="stylesheet" href="/Content/site/com-mui.css" />
+		<script src="../js/jfs.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			h5 {
+				margin: 5px 7px;
+				color:#fff;
+			}
+			</style>
+	</head>
+
+	<body style="background:url(images/hb_bg.png) repeat;">
+	<div class="mui-content" style="background:url(images/hb_bg.png) repeat;">
+		<div class="mui-content-padded" style="margin: 15px;color:#fff;">
+		提示: 红包金额最少为10，每发送一次红包赠送一次领红包机会;红包金额大于100时，赠送(红包金额/100)次领红包机会。
+		</div>
+	    <div class="mui-content-padded" style="margin: 5px;">
+	    		<h5>红包标题（可语音输入，按入输入框右边的图标）：</h5>
+				<div class="mui-input-row">
+					<input id="title" type="text" class="mui-input-speech mui-input-clear" placeholder="红包标题" value="快来领红包">
+				</div>
+			    <h5>红包金额：</h5>
+				<div class="mui-input-row">
+					<input id="money" type="number" value="10" placeholder="输入红包金额">
+				</div>
+				<h5>交易密码：</h5>
+				<div class="mui-input-row mui-password">
+					<input id="pwd" type="password" class="mui-input-password">
+				</div>
+			</div>
+			
+			  <div class="mui-content-padded" style="margin: 5px;">
+			  	<button id="btnSend" type="button" class="mui-btn mui-btn-primary mui-btn-block">打包发送</button>
+			  </div>
+			 
+	</div>
+	<script type="text/javascript">
+		mui.plusReady(function(){
+			
+			document.getElementById("btnSend").addEventListener('tap',function(event){
+				
+					var url='/allin/Sys/FaHongbao';
+			var hongbao={
+				title: document.getElementById("title").value,
+				money: document.getElementById("money").value,
+				password: document.getElementById("pwd").value
+			};
+			
+			jfs.waitting("正在打包...");
+			jfs.ajax(url,hongbao,function(back){
+				jfs.toast("红包发送成功!");
+				jfs.closeWaiting();
+			},function(error){
+				 jfs.toast(error.msg);
+				jfs.closeWaiting();
+			});
+			});
+		
+		});
+	</script>
+	</body>
+    
+	</html>

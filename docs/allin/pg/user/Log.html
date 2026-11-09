@@ -1,0 +1,53 @@
+﻿<ul class="com-toolbar clearfloat" com-auto="log_list">
+    <li>
+        <select name="logType">
+            <option value="0">所有日志</option>
+            <option value="1" selected="selected">资金明细</option>
+            <option value="2">充值提现</option>
+            <option value="110001">充值</option>
+            <option value="110002">提现</option>
+            <option value="110003">转账</option>
+            <optgroup label="统一支付">
+                <option value="100007">支付收款</option>
+                <option value="100010">支付付佣</option>
+            </optgroup>
+        </select>
+    </li>
+    <li>
+        信息 <input name="key" />
+    </li>
+    <li>
+        <input name="end" class="copy com-datetime" value="" placeholder="截止(年-月-日)" />
+    </li>
+    <li>
+        <button class="mui-btn  mui-btn-link mui-icon mui-icon-search" com-auto com-post>查询</button>
+    </li>
+
+</ul>
+
+
+<div class="mui-scroll-wrapper">
+    <div class="mui-scroll" pull>
+        <div id="log_list" class="com-auto" com-refresh="" com-autoload="false" com-load="/allin/user/ProcessCmd/log?{com.base.GetQuery(location.href,'id')}">
+            <table class="com-table">
+                <thead>
+                    <tr>
+                        <td style="width:180px;">时间</td>
+                        <td>类型</td>
+                        <td>处理人</td>
+                        <td>信息</td>
+                        <td style="text-align:right;">变化金额</td>
+                    </tr>
+                </thead>
+                <tr com-foreach="item in data">
+                    <td>{{item.LogTime:datetime}}</td>
+                    <td>{{item.StrType}}</td>
+                    <td>{{item.OperatorName}}</td>
+                    <td style="text-align:left;">{{item.Title}}</td>
+                    <td style="text-align:right;" title="(原){{item.OldData}} » (新){{item.NewData}}">{{item.AddData}}<span class="hide800">{{item.OldData}} »{{item.NewData}}</span> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
