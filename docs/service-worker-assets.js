@@ -841,11 +841,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-QjKwjNC2UMlSoQ9cb2W+m2JfUnQhzq5GqdKIG2Ve6qA=",
+      "hash": "sha256-CG\/svuohbh1QkA27OkR6SJt7wPYjHK5zgHxWUkRlHJY=",
       "url": "_framework\/allin.client.dll"
     },
     {
-      "hash": "sha256-SrohkA+RDBnQyT9nUzx5SITPBLzfEu3u\/IPCTywTlEg=",
+      "hash": "sha256-BS4O2rINJnEiESAVV++klrsY2tR+xu7nNeP2K4BjoMI=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1477,5 +1477,5 @@
       "url": "_content\/allin.ui\/lib\/fluentuiIcons\/search.html"
     }
   ],
-  "version": "clH6urKT"
+  "version": "y0moUm\/a"
 };

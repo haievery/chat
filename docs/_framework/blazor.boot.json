@@ -7,7 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "allin.client.dll": "sha256-QjKwjNC2UMlSoQ9cb2W+m2JfUnQhzq5GqdKIG2Ve6qA=",
+      "allin.client.dll": "sha256-CG\/svuohbh1QkA27OkR6SJt7wPYjHK5zgHxWUkRlHJY=",
       "allin.client.shared.dll": "sha256-duK0ndeHwwv+gzvIHadC1YqbfktPySFv7eYB1QskK+c=",
       "allin.shared.dll": "sha256-umnO7W\/3a72fujUh8iBe3tl\/aqaowm3wNDNoqrrRxHc=",
       "allin.ui.dll": "sha256-3RERE2+zHi3o7QawuXfqRojrkJs2L7k\/H0TUwJDvA28=",
