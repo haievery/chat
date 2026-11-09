@@ -43,7 +43,9 @@ async function onFetch(event) {
     if (event.request.method === 'GET') {
         // For all navigation requests, try to serve index.html from cache
         // If you need some URLs to be server-rendered, edit the following check to exclude those URLs
-        if (event.request.url.endsWith(".apk") ) { //apk下载直接从服务器上获取
+        // /download/ 是独立的静态下载页，必须直接走网络，不能被 Blazor 的 index.html 回退接管
+        const requestPath = new URL(event.request.url).pathname;
+        if (requestPath === '/download' || requestPath.indexOf('/download/') === 0 || event.request.url.endsWith('.apk')) {
             return fetch(event.request);
         }
         const shouldServeIndexHtml = event.request.mode === 'navigate';
@@ -55,4 +57,4 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: 3qrlkJzP */
+/* Manifest version: clH6urKT */

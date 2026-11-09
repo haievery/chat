@@ -1273,7 +1273,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-s\/T2B9g4+v37i4WDwhlYJU1Q0p+4Al7MDsaVfJ63odQ=",
+      "hash": "sha256-38lo05oMRDNVS\/dUWDjoLIf6aIHKIfGeK1kl0rgJ7lA=",
       "url": "index.html"
     },
     {
@@ -1477,5 +1477,5 @@
       "url": "_content\/allin.ui\/lib\/fluentuiIcons\/search.html"
     }
   ],
-  "version": "3qrlkJzP"
+  "version": "clH6urKT"
 };

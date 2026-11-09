@@ -19,6 +19,17 @@
     <!--Android支持-->
     <meta name="mobile-web-app-capable" content="yes">
     <base href="/" />
+    <script>
+        // /download/ 是独立静态下载页：这些链接交给浏览器原生导航，避免被 Blazor 路由接管
+        document.addEventListener('click', function (e) {
+            var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+            if (!a) return;
+            var u = new URL(a.getAttribute('href'), location.href);
+            if (u.origin === location.origin && (u.pathname === '/download' || u.pathname.indexOf('/download/') === 0)) {
+                e.stopImmediatePropagation();
+            }
+        }, true);
+    </script>
     <!--<link href="/allin_file/brand/ico" rel="shortcut icon" type="image/x-icon" />-->
     <!--<link href="/allin/lib/bulma/css/bulma.css" rel="stylesheet" />-->
     <link href="_content/BulmaRazor/bulma.min.css?v9922032525" rel="stylesheet" />
