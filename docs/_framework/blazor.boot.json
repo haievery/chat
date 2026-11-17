@@ -8,8 +8,8 @@
   "resources": {
     "assembly": {
       "allin.client.dll": "sha256-CG\/svuohbh1QkA27OkR6SJt7wPYjHK5zgHxWUkRlHJY=",
-      "allin.client.shared.dll": "sha256-duK0ndeHwwv+gzvIHadC1YqbfktPySFv7eYB1QskK+c=",
-      "allin.shared.dll": "sha256-umnO7W\/3a72fujUh8iBe3tl\/aqaowm3wNDNoqrrRxHc=",
+      "allin.client.shared.dll": "sha256-JSk8BOUpJxjZrDIh3sgahJxLTuf+DVWX1\/95DsfGzbc=",
+      "allin.shared.dll": "sha256-9BaRJTT+If8rNQwzbKwlZt4MecXftbHXcDFgbhxKZSw=",
       "allin.ui.dll": "sha256-3RERE2+zHi3o7QawuXfqRojrkJs2L7k\/H0TUwJDvA28=",
       "BulmaRazor.dll": "sha256-Sce9R51P\/9i2bvExQsp+Rif2LbJFb7pdlST+I1uMN34=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-ODuGqSb\/EjQtAKtKGIHBUB8NM5h18TZENSXeu+IQyNk=",

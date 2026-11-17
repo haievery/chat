@@ -845,15 +845,15 @@
       "url": "_framework\/allin.client.dll"
     },
     {
-      "hash": "sha256-BS4O2rINJnEiESAVV++klrsY2tR+xu7nNeP2K4BjoMI=",
+      "hash": "sha256-LGUJ9s+qdswN6YJXmVUZYs67KO3fzDEoxC\/vdliz3MQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-duK0ndeHwwv+gzvIHadC1YqbfktPySFv7eYB1QskK+c=",
+      "hash": "sha256-JSk8BOUpJxjZrDIh3sgahJxLTuf+DVWX1\/95DsfGzbc=",
       "url": "_framework\/allin.client.shared.dll"
     },
     {
-      "hash": "sha256-umnO7W\/3a72fujUh8iBe3tl\/aqaowm3wNDNoqrrRxHc=",
+      "hash": "sha256-9BaRJTT+If8rNQwzbKwlZt4MecXftbHXcDFgbhxKZSw=",
       "url": "_framework\/allin.shared.dll"
     },
     {
@@ -1477,5 +1477,5 @@
       "url": "_content\/allin.ui\/lib\/fluentuiIcons\/search.html"
     }
   ],
-  "version": "y0moUm\/a"
+  "version": "L4xZQd+a"
 };
